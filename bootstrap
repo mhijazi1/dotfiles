@@ -1,0 +1,56 @@
+#! /bin/bash
+
+packages=(
+  curl wget
+  zsh tmux
+  bat silversearcher-ag)
+
+dotfiles_dir="$(dirname $0)/../"
+
+if command -v apt-get &> /dev/null
+then
+  echo "Using package manager: apt-get"
+  packagemanager="apt-get"
+  install="apt-get install -y"
+fi
+
+function install_if_missing {
+  if ! command -v $1 &> /dev/null
+  then
+    echo "Installing $1"
+    eval "sudo $install $1"
+  else
+    echo "$1 already installed"
+  fi
+}
+
+for package in "${packages[@]}"
+do
+  install_if_missing $package
+done
+
+# Check if zsh is the default shell
+if [ "$SHELL" != "/bin/zsh" ]
+then
+  echo "Changing default shell to zsh"
+  sudo chsh -s /bin/zsh
+fi
+
+echo "Creating tmux conf symlinks"
+rm -rf $HOME/.tmux.conf
+rm -rf $HOME/.tmux.conf.local
+ln -s $(pwd)/tmux.conf $HOME/.tmux.conf
+ln -s $(pwd)/tmux.conf.local $HOME/.tmux.conf.local
+
+# install oh-my-zsh
+if [ -d "$HOME/.oh-my-zsh" ]
+then
+  echo "Oh My Zsh already installed, updating"
+  zsh
+  upgrade_oh_my_zsh
+else
+  echo "Installing oh-my-zsh"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  source ~/.zshrc
+fi
+
