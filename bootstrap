@@ -45,14 +45,7 @@ ln -s $(pwd)/tmux.conf.local $HOME/.tmux.conf.local
 # install oh-my-zsh
 if [ -d "$HOME/.oh-my-zsh" ]
 then
-  echo "Oh My Zsh already installed, updating"
-  zsh
-  if command -v omz &> /dev/null
-  then
-    omz update
-  else
-    upgrade_oh_my_zsh
-  fi
+  echo "Oh My Zsh already installed"
 else
   echo "Installing oh-my-zsh"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
