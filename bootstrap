@@ -49,7 +49,14 @@ then
 else
   echo "Installing oh-my-zsh"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  source ~/.zshrc
 fi
+source ~/.zshrc
+
+echo "Installing Powerlevel10k"
+git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+echo "Setting up zsh configs"
+ln -s $(pwd)/zshrc $HOME/.zshrc
+ln -s $(pwd)/p10k.zsh $HOME/.p10k.zsh
 
 echo "DONE!"
