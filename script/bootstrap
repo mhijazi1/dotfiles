@@ -1,0 +1,33 @@
+#! /bin/bash
+
+if command -v apt-get &> /dev/null
+then
+  packagemanager = "apt-get"
+  install = "apt-get install"
+fi
+
+function install_if_missing {
+  if ! command -v $1 &> /dev/null
+  then
+    echo "Installing $1"
+    eval "sudo $install $1"
+  fi
+}
+
+install_if_missing curl
+install_if_missing zsh
+
+# install oh-my-zsh
+if ! command -v omz &> /dev/null
+then
+  echo "Installing oh-my-zsh"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
+# Check if zsh is the default shell
+if [ "$SHELL" != "/bin/zsh" ]
+then
+  echo "Changing default shell to zsh"
+  chsh -s /bin/zsh
+fi
+
