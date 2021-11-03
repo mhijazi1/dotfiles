@@ -59,3 +59,4 @@ else
   source ~/.zshrc
 fi
 
+echo "DONE!"
