@@ -11,14 +11,22 @@ if command -v apt-get &> /dev/null
 then
   echo "Using package manager: apt-get"
   packagemanager="apt-get"
-  install="apt-get install -y"
+  install="sudo apt-get install -y"
+elif command -v brew &> /dev/null
+then
+  echo "Using package manager: brew"
+  packagemanager="brew"
+  install="brew install"
+else
+  echo "Couldn't find supported package manager, Exiting"
+  exit 1
 fi
 
 function install_if_missing {
   if ! command -v $1 &> /dev/null
   then
     echo "Installing $1"
-    eval "sudo $install $1"
+    eval "$install $1"
   else
     echo "$1 already installed"
   fi
@@ -53,7 +61,7 @@ fi
 source ~/.zshrc
 
 echo "Installing Powerlevel10k"
-git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
 echo "Setting up zsh configs"
 rm -rf $HOME/.zshrc
