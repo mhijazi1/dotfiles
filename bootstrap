@@ -56,6 +56,8 @@ echo "Installing Powerlevel10k"
 git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
 echo "Setting up zsh configs"
+rm -rf $HOME/.zshrc
+rm -rf $HOME/.p10k.zsh
 ln -s $(pwd)/zshrc $HOME/.zshrc
 ln -s $(pwd)/p10k.zsh $HOME/.p10k.zsh
 
