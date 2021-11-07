@@ -22,6 +22,20 @@ then
 else
   ZSH_THEME="codespaces"
 fi
+
+# Use code when you can
+# otherwise use neovim
+# all else fails use vim
+if command -v code &> /dev/null
+then
+  export EDITOR='code'
+elif command -v nvim &> /dev/null
+then
+  export EDITOR='nvim'
+else
+  export EDITOR='vim'
+fi
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME="codespaces"
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -96,7 +110,7 @@ plugins=(
   rails
   ruby
   sudo
-  web_search
+  web-search
 )
 
 source $ZSH/oh-my-zsh.sh
