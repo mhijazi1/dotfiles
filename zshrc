@@ -106,11 +106,9 @@ plugins=(
   gh
   git
   golang
-  history
   rails
   ruby
   sudo
-  web-search
 )
 
 source $ZSH/oh-my-zsh.sh
