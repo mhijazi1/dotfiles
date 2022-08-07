@@ -18,6 +18,11 @@ then
   echo "Using package manager: brew"
   packagemanager="brew"
   install="brew install"
+elif command -v yum &> /dev/null
+then
+  echo "Using package manager: yum"
+  packagemanager="yum"
+  install="sudo yum install -y"
 else
   echo "Couldn't find supported package manager, Exiting"
   exit 1
