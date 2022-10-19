@@ -2,7 +2,7 @@
 
 packages=(
   curl wget
-  zsh tmux
+  zsh tmux neovim
   bat silversearcher-ag)
 
 dotfiles_dir="$(dirname $0)/../"
@@ -74,5 +74,10 @@ rm -rf $HOME/.zshrc
 rm -rf $HOME/.p10k.zsh
 ln -s $(pwd)/zshrc $HOME/.zshrc
 ln -s $(pwd)/p10k.zsh $HOME/.p10k.zsh
+
+echo "Setting up nvim configs"
+rm -rf $HOME/.config/nvim
+git clone https://github.com/VundleVim/Vundle.vim.git ./nvim/bundle/Vundle.vim
+ln -s $(pwd)/nvim $HOME/.config/nvim
 
 echo "DONE!"
