@@ -26,12 +26,12 @@ fi
 # Use code when you can
 # otherwise use neovim
 # all else fails use vim
-if command -v code &> /dev/null
+if command -v nvim &> /dev/null
+  export EDITOR='nvim'
+then
+elif command -v code &> /dev/null
 then
   export EDITOR='code'
-elif command -v nvim &> /dev/null
-then
-  export EDITOR='nvim'
 else
   export EDITOR='vim'
 fi
@@ -97,7 +97,6 @@ fi
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  ag
   aliases
   bundler
   colored-man-pages
@@ -142,3 +141,25 @@ alias t="tmux new-session -A -s main"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Load rbenv automatically
+
+# eval "$(~/.rbenv/bin/rbenv init -)"
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+##__conda_setup="$('/home/mo/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+##if [ $? -eq 0 ]; then
+##    eval "$__conda_setup"
+##else
+##    if [ -f "/home/mo/miniconda3/etc/profile.d/conda.sh" ]; then
+##        . "/home/mo/miniconda3/etc/profile.d/conda.sh"
+##    else
+##        export PATH="/home/mo/miniconda3/bin:$PATH"
+##    fi
+##fi
+##unset __conda_setup
+# <<< conda initialize <<<
