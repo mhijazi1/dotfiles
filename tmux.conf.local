@@ -428,6 +428,3 @@ set -g @themepack 'powerline/block/gray'
 # "$@"
 # # /!\ do not remove the previous line
 
-
-# use zsh by default
-set-option -g default-shell /bin/zsh
