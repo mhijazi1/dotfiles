@@ -1,26 +1,7 @@
+" Enable syntax highlighting
 syntax enable
 
-let mapleader = ","
-
-" Vundle Config
-
-set nocompatible
-filetype off
-
-set rtp+=~/.config/nvim/bundle/Vundle.vim
-call vundle#begin('~/.config/nvim/bundle/')
-
-" Plugins
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'neomake/neomake'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'tpope/vim-surround'
-Plugin 'github/copilot.vim'
-
-call vundle#end()
+"Plugin 'neomake/neomake'
 
 filetype plugin indent on
 
@@ -37,13 +18,16 @@ set tabstop=4
 
 " Airline Config
 let g:airline_powerline_fonts = 1
-let g:airline_theme='gruvbox'
+let g:airline_theme='distinguished'
+
+" Colorscheme
+" colorscheme catppuccin-macchiato
 
 " NERDTree Config
 let NERDTreeShowHidden=1
 
 " Neomake Config
-call neomake#configure#automake('rw')
+" call neomake#configure#automake('rw')
 
 " Strip trailing whitespace on save
 fun! <SID>StripTrailingWhitespace()
@@ -54,4 +38,20 @@ fun! <SID>StripTrailingWhitespace()
 endfun
 autocmd BufWritePre * :call <SID>StripTrailingWhitespace()
 
+" 2 Space Indentation by default unless already set
+autocmd FileType * setlocal shiftwidth=2 softtabstop=2 expandtab
 
+
+" Keybindings
+
+" Leader
+noremap <Space> <Nop>
+let mapleader = " "
+
+"nnoremap <leader>nt :NERDTreeToggle<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>W :wq<CR>
+nnoremap <leader>Q :qall!<CR>
+
+lua require ('init')
