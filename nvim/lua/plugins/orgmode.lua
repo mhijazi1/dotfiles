@@ -8,7 +8,7 @@ return {
   },
   config = function()
     require('orgmode').setup({
-      org_agenda_files = {'~/org/*'},
+      org_agenda_files = {'~/org/*', '~/org/**/*'},
       org_default_notes_file = '~/org/refile.org',
       org_todo_keywords = {'TODO', 'NEXT', 'WAITING', 'IN-PROGRESS', '|', 'DONE', "DROPPED"},
       org_startup_indent = true,
