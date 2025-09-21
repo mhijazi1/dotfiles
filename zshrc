@@ -101,6 +101,7 @@ plugins=(
   bundler
   colored-man-pages
   cp
+  direnv
   encode64
   gh
   git
