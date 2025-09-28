@@ -167,3 +167,8 @@ alias org="nvim ~/org"
 ##fi
 ##unset __conda_setup
 # <<< conda initialize <<<
+
+nixrun() {
+    nix-shell -p "$1" --run "$1 & disown"
+    exit
+}
