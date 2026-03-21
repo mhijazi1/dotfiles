@@ -168,7 +168,22 @@ alias org="nvim ~/org"
 ##unset __conda_setup
 # <<< conda initialize <<<
 
-nixrun() {
-    nix-shell -p "$1" --run "$1 & disown"
-    exit
+unalias nix-shell 2>/dev/null
+nix-shell() {
+    local has_run=false
+
+    # Check if --run is already provided in arguments
+    for arg in "$@"; do
+        if [[ "$arg" == "--run" ]]; then
+            has_run=true
+            break
+        fi
+    done
+
+    # If --run not provided, add it with current shell
+    if [[ "$has_run" == false ]]; then
+      command nix-shell "$@" --run $(ps -p $$ | awk 'NR==2 {print $4}')
+    else
+      command nix-shell "$@"
+    fi
 }
