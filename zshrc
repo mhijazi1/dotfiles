@@ -141,6 +141,7 @@ source $ZSH/oh-my-zsh.sh
 alias t="tmux new-session -A -s main"
 alias ns="nix-shell --command 'zsh'"
 alias org="nvim ~/org"
+alias pvim="NVIM_APPNAME=pi-nvim nvim"
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -187,3 +188,4 @@ nix-shell() {
       command nix-shell "$@"
     fi
 }
+
