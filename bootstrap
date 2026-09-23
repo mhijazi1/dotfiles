@@ -80,4 +80,14 @@ rm -rf $HOME/.config/nvim
 git clone https://github.com/VundleVim/Vundle.vim.git ./nvim/bundle/Vundle.vim
 ln -s $(pwd)/nvim $HOME/.config/nvim
 
+echo "Setting up Copilot skills"
+install -Dm0644 copilot/skills/cold-reader-review/SKILL.md $HOME/.copilot/skills/cold-reader-review/SKILL.md
+install -Dm0644 copilot/agents/cold-reader.agent.md $HOME/.copilot/agents/cold-reader.agent.md
+
+if ! copilot plugin marketplace list --json | grep -q '"name": "ponytail"'
+then
+  copilot plugin marketplace add DietrichGebert/ponytail
+fi
+copilot plugin install ponytail@ponytail
+
 echo "DONE!"
