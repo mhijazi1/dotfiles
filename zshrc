@@ -142,8 +142,6 @@ alias t="tmux new-session -A -s main"
 alias ns="nix-shell --command 'zsh'"
 alias org="nvim ~/org"
 alias pvim="NVIM_APPNAME=pi-nvim nvim"
-# pi opens the sessions layout (wrapper in ~/.pi/agent/bin; PIS_DISABLE=1 pi skips it)
-alias pi="$HOME/.pi/agent/bin/pi"
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
